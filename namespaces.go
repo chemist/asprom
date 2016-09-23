@@ -12,11 +12,19 @@ var (
 	// NamespaceMetrics lists the keys we report from aero's namespace statistics command.
 	// See `asinfo -l -v namespace/<namespace>` for the full list.
 	NamespaceMetrics = []metric{
-		{collGauge, "migrate-rx-partitions-remaining", "remaining rx migrate partitions per namespace per node"},
-		{collGauge, "migrate-tx-partitions-remaining", "remaining tx migrate partitions per namespace per node"},
-		{collGauge, "free-pct-memory", "% free memory per namespace per node"},
-		{collGauge, "evicted-objects", "evicted objects per namespace per node"},
-		{collGauge, "expired-objects", "expired objects per namespace per node"},
+		{collGauge, "migrate_rx_partitions_remaining", "remaining rx migrate partitions per namespace per node"},
+		{collGauge, "migrate_tx_partitions_remaining", "remaining tx migrate partitions per namespace per node"},
+		{collGauge, "memory_free_pct", "% free memory per namespace per node"},
+		{collGauge, "device_free_pct", "% free memory per namespace per node"},
+		{collGauge, "device_available_pct", "% available pct per namespace per node"},
+		{collGauge, "evicted_objects", "evicted objects per namespace per node"},
+		{collGauge, "expired_objects", "expired objects per namespace per node"},
+		{collGauge, "client_read_success", "reads per namespace per node"},
+		{collGauge, "client_write_success", "writes per namespace per node"},
+		{collGauge, "client_write_error", "writes error per namespace per node"},
+		{collGauge, "client_read_error", "read errors per namespace per node"},
+		{collGauge, "client_read_timeout", "read timeout per namespace per node"},
+		{collGauge, "client_write_timeout", "write timeout per namespace per node"},
 		{collGauge, "objects", "objects per namespace per node"},
 	}
 )

@@ -14,14 +14,12 @@ var (
 	// See `asinfo -l -v statistics` for the full list.
 	StatsMetrics = []metric{
 		{collGauge, "cluster_size", "cluster size, as reported by this node"},
-		{collGauge, "free-pct-disk", "disk free %"},
-		{collGauge, "free-pct-memory", "memory free %"},
-		{collGauge, "migrate_rx_objs", "cluster wide migrate rx objects"},
-		{collGauge, "migrate_tx_objs", "cluster wide migrate tx objects"},
+	//	{collGauge, "free-pct-disk", "disk free %"},
+	//	{collGauge, "free-pct-memory", "memory free %"},
 		{collGauge, "objects", "objects per node"},
 		{collGauge, "client_connections", "client connections per node"},
-		{collCounter, "stat_evicted_objects", "evicted objects"},
-		{collCounter, "stat_expired_objects", "expired objects"},
+                {collGauge, "migrate_partitions_remaining", "migrate_partitions_remaining"},
+                {collGauge, "system_free_mem_pct", "system_free_mem_pct"},
 	}
 )
 
