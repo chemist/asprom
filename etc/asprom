@@ -1,0 +1,58 @@
+#!/bin/bash
+#
+# prometheus Monitoring system
+#
+# chkconfig: 345 70 30
+# description: Prometheus Monitoring system
+# processname: prometheus
+
+# Source function library.
+. /etc/init.d/functions
+
+RETVAL=0
+prog="asprom"
+LOCKFILE=/var/lock/subsys/$prog
+BIN=/opt/asprom/asprom
+
+PUSER="nobody"
+
+export PATH=$PATH:/opt/asprom
+
+pid() {
+  PID=$(ps --no-headers -o pid -C asprom)
+}
+
+start() {
+    echo -n "Starting $prog: "
+     su -s /bin/sh -c "nohup ${BIN} >> /dev/null 3>&1 &" $PUSER 2> /dev/null
+    RETVAL=$?
+     [ $RETVAL ] && touch $LOCKFILE
+    return $RETVAL
+}
+
+stop() {
+    echo -n "Shutting down $prog: "
+        pid
+        kill -9 $PID
+        if [ $? ] ; then
+          rm -f $LOCKFILE
+          return 0
+        else
+          return 1
+        fi
+}
+
+case "$1" in
+    start)
+    start
+    ;;
+    stop)
+    stop
+    ;;
+    *)
+    echo "Usage: <servicename> {start|stop"
+    exit 1
+    ;;
+esac
+exit $?
+
