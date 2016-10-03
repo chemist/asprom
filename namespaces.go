@@ -26,6 +26,7 @@ var (
 		{collGauge, "client_read_timeout", "read timeout per namespace per node"},
 		{collGauge, "client_write_timeout", "write timeout per namespace per node"},
 		{collGauge, "objects", "objects per namespace per node"},
+		{collGauge, "stop_writes","test"}
 	}
 )
 

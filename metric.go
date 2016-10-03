@@ -38,8 +38,24 @@ func infoCollect(ch chan<- prometheus.Metric, metrics map[string]setter, info st
 			log.Printf("key %q not present. Typo?", key)
 			continue
 		}
+
+	
+
 		f, err := strconv.ParseFloat(v, 64)
 		if err != nil {
+			b,err := strconv.ParseBool(v)
+			if (err != nil)
+			{
+					log.Printf("%q invalid value %q: %s", key, v, err)
+					continue
+			}
+			else
+			{
+				m.Set(b)
+				ch <- m
+				continue
+			}
+
 			log.Printf("%q invalid value %q: %s", key, v, err)
 			continue
 		}
