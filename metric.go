@@ -39,19 +39,18 @@ func infoCollect(ch chan<- prometheus.Metric, metrics map[string]setter, info st
 			continue
 		}
 
-	
-
 		f, err := strconv.ParseFloat(v, 64)
 		if err != nil {
-			b,err := strconv.ParseBool(v)
-			if (err != nil)
-			{
-					log.Printf("%q invalid value %q: %s", key, v, err)
-					continue
-			}
-			else
-			{
-				m.Set(b)
+			b, err := strconv.ParseBool(v)
+			if err != nil {
+				log.Printf("%q invalid value %q: %s", key, v, err)
+				continue
+			} else {
+				if b {
+					m.Set(1)
+				} else {
+					m.Set(0)
+				}
 				ch <- m
 				continue
 			}
