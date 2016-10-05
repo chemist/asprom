@@ -50,6 +50,7 @@ status() {
   else
     return 1
   fi
+}
 
 case "$1" in
     start)
