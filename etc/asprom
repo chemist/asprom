@@ -42,7 +42,7 @@ status() {
     echo ok
     return 0
   else
-    echo asprom don't run
+    echo fail
     return 1
   fi
 }
