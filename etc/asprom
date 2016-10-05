@@ -18,10 +18,6 @@ PUSER="nobody"
 
 export PATH=$PATH:/opt/asprom
 
-pid() {
-  PID=$(ps --no-headers -o pid -C asprom)
-}
-
 start() {
     echo -n "Starting $prog: "
      su -s /bin/sh -c "nohup ${BIN} >> /dev/null 3>&1 &" $PUSER 2> /dev/null
@@ -32,8 +28,7 @@ start() {
 
 stop() {
     echo -n "Shutting down $prog: "
-        pid
-        kill -9 $PID
+        kill -9 $(pgrep asprom)
         if [ $? ] ; then
           rm -f $LOCKFILE
           return 0
@@ -43,11 +38,11 @@ stop() {
 }
 
 status() {
-  ps --no-headers -o pid -C asprom
-  if [ $? ] ; then
+  if pgrep -u nobody asprom ; then
     echo ok
     return 0
   else
+    echo asprom don't run
     return 1
   fi
 }
