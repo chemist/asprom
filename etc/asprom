@@ -42,6 +42,15 @@ stop() {
         fi
 }
 
+status() {
+  pgrep asprom
+  if [ $? ] ; then
+    echo ok
+    return 0
+  else
+    return 1
+  fi
+
 case "$1" in
     start)
     start
@@ -49,8 +58,11 @@ case "$1" in
     stop)
     stop
     ;;
+    status)
+    status
+    ;;
     *)
-    echo "Usage: <servicename> {start|stop"
+    echo "Usage: <servicename> {start|stop|status}"
     exit 1
     ;;
 esac
