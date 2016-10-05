@@ -43,7 +43,7 @@ stop() {
 }
 
 status() {
-  pgrep asprom
+  ps --no-headers -o pid -C asprom
   if [ $? ] ; then
     echo ok
     return 0
